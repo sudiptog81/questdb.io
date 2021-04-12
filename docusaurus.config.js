@@ -62,6 +62,12 @@ const config = {
   projectName: "questdb",
   customFields,
   plugins: [
+    [
+      "docusaurus-plugin-openapi",
+      {
+        openapiPath: require.resolve("./plugins/swagger/spec.json"),
+      },
+    ],
     require.resolve("./plugins/fetch-release/index"),
     require.resolve("./plugins/webpack-ts/index"),
     require.resolve("./plugins/optimize/index"),
@@ -200,6 +206,14 @@ const config = {
           label: "Documentation",
           to: "/docs/introduction/",
           position: "left",
+          items: [
+            {
+              to: "api/",
+              activeBasePath: "api",
+              label: "API",
+              position: "left",
+            }
+          ]
         },
       ],
     },

@@ -1,0 +1,204 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "QuestDB API",
+    "description": "REST API endpoints for inserting and querying data",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://demo.questdb.io"
+    }
+  ],
+  "paths": {
+    "/exec": {
+      "get": {
+        "tags": [
+          "Execute query"
+        ],
+        "description": "Compiles and executes the SQL query supplied as a  parameter and returns a JSON response.\n",
+        "operationId": "execute",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "description": "URL encoded query text. It can be multi-line.",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": "Enable or disable the number of rows returned by the query.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "nm",
+            "in": "query",
+            "description": "Skips the metadata section of the response when set to true.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "timings",
+            "in": "query",
+            "description": "When set to true, QuestDB will also include a timings property in the response which gives details about the execution.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Paging parameter. `limit=10,20` will return row numbers 10 through to 20 inclusive and `limit=20` will return first 20 rows, which is equivalent to limit=0,20. limit=-20 will return the last 20 rows.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returned rows",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rows"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/exp": {
+      "get": {
+        "tags": [
+          "Export data"
+        ],
+        "operationId": "export",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "description": "URL encoded query text. It can be multi-line.",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Paging parameter. `limit=10,20` will return row numbers 10 through to 20 inclusive and `limit=20` will return first 20 rows, which is equivalent to limit=0,20. limit=-20 will return the last 20 rows.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "response"
+          }
+        }
+      }
+    },
+    "/imp": {
+      "get": {
+        "tags": [
+          "Import data"
+        ],
+        "operationId": "import",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "description": "URL encoded query text. It can be multi-line.",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Paging parameter. `limit=10,20` will return row numbers 10 through to 20 inclusive and `limit=20` will return first 20 rows, which is equivalent to limit=0,20. limit=-20 will return the last 20 rows.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "response"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "rows": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The user ID."
+          }
+        }
+      }
+    },
+    "parameters": {
+      "queryParam": {
+        "name": "query",
+        "in": "query",
+        "description": "URL encoded query text. It can be multi-line.",
+        "required": true,
+        "style": "form",
+        "explode": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "limitParam": {
+        "name": "limit",
+        "in": "query",
+        "description": "Paging parameter. `limit=10,20` will return row numbers 10 through to 20 inclusive and `limit=20` will return first 20 rows, which is equivalent to limit=0,20. limit=-20 will return the last 20 rows.",
+        "required": false,
+        "style": "form",
+        "explode": true,
+        "schema": {
+          "type": "number"
+        }
+      }
+    }
+  }
+}

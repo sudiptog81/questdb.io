@@ -29,6 +29,7 @@
     "@types/throttle-debounce": "2.1.0",
     "clsx": "1.1.1",
     "date-fns": "2.16.1",
+    "docusaurus-plugin-openapi": "^0.0.15",
     "react": "16.14.0",
     "react-dom": "16.14.0",
     "react-transition-group": "4.4.1",
