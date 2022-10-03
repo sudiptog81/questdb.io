@@ -77,7 +77,7 @@ Return value type is `double`.
 **Examples:**
 
 ```questdb-sql
-SELECT power(2, 3)
+SELECT power(2, 3);
 ```
 
 | power |
