@@ -63,7 +63,7 @@ SELECT log(4.123)
 ## power
 
 `power(base, exponent)` returns the value of a number `base` raised to the
-power of some number `exponent`.
+power defined by `exponent`.
 
 **Arguments:**
 
